@@ -3,9 +3,8 @@ import pickle
 import numpy as np
 
 from flask import Blueprint, render_template, request
-from model import load_model, make_prediction
 
-model_path = best_extra_trees_model.pkl
+model_path = "best_extra_trees_model.pkl"
 
 with open(model_path, "rb") as f:
         model = pickle.load(f)
