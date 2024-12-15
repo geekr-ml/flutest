@@ -1,10 +1,10 @@
-from flask import Flask
+# from flask import Flask
 
-def create_app():
-    app = Flask(__name__)
+# def create_app():
+#     app = Flask(__name__)
 
-    # Register Blueprints
-    from .routes import main
-    app.register_blueprint(main)
+#     # Register Blueprints
+#     from .routes import main
+#     app.register_blueprint(main)
 
-    return app
+#     return app
