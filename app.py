@@ -1,23 +1,22 @@
-# from app import create_app
-
-# app = create_app()
-
-# if __name__ == "__main__":
-#     app.run(debug=False, host="0.0.0.0", port=5000)
-
+from flask import Flask
+import pickle
+import numpy as np
 
 from flask import Blueprint, render_template, request
-from .model import load_model, make_prediction
-from flask import Flask
+from model import load_model, make_prediction
 
+model_path = best_extra_trees_model.pkl
 
-model_path = "best_extra_trees_model.pkl"
-
-
-with open("best_extra_trees_model.pkl", "rb") as f:
+with open(model_path, "rb") as f:
         model = pickle.load(f)
 
 app = Flask(__name__)
+
+
+def make_prediction(model, features):
+    features = np.array([features])
+    prediction = model.predict(features)[0]
+    return prediction
 
 @app.route("/")
 def index():
@@ -77,6 +76,7 @@ def predict():
     except Exception as e:
         print("Error:", str(e))
         return f"An error occurred: {str(e)}", 500
+
 
 if __name__ == "__main__":
     app.run(debug=True)
