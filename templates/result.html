@@ -45,6 +45,17 @@
             <p class="lead text-center">
                  <strong>{{ prediction }}</strong>
             </p>
+                <p class="lead text-center">
+                    <strong>Probability (Positive):</strong> {{ probability_positive }}
+                </p>
+                <p class="lead text-center">
+                    <strong>Probability (Negative):</strong> {{ probability_negative }}
+                </p>
+            <h2 class="text-center text-primary">SHAP Explanation</h2>
+                <p class="lead text-center">
+                    The following plot shows the most influential features contributing to the prediction:
+                </p>
+            <img src="{{ shap_plot_path }}" alt="SHAP Plot" style="max-width: 100%; height: auto;">          
             <div class="text-center">
                 <a href="/" class="btn btn-primary">Go Back</a>
             </div>
@@ -57,21 +68,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prediction Result</title>
-    <link rel="stylesheet" href="/static/css/styles.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Prediction Result</h1>
-        <p>The predicted disease outcome is: <strong>{{ prediction }}</strong></p>
-        <a href="/">Go Back</a>
-    </div>
-</body>
-</html> -->
