@@ -27,13 +27,18 @@ def make_prediction(model, features):
 
 # Function to generate SHAP explanation plot
 def generate_shap_plot(model, features):
-    explainer = shap.TreeExplainer(model)
-    shap_values = explainer.shap_values(features)
+    # Reshape the feature input for SHAP
+    features_array = np.array([features])
+    explainer = shap.Explainer(model.predict, features_array)
+    shap_values = explainer(features_array)
 
-    # Generate SHAP summary plot
+    # Generate SHAP summary plot for a single instance
     plt.figure()
-    shap.summary_plot(shap_values[1], features, plot_type="bar", show=False)
-    plot_path = os.path.join(shap_plot_dir, "shap_summary_plot.png")
+    shap.waterfall_plot(shap.Explanation(values=shap_values[0].values, 
+                                         base_values=shap_values[0].base_values, 
+                                         data=features, 
+                                         feature_names=feature_names))
+    plot_path = os.path.join(shap_plot_dir, "shap_waterfall_plot.png")
     plt.savefig(plot_path, bbox_inches="tight")
     plt.close()
     return plot_path
