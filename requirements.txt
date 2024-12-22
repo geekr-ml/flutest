@@ -1,6 +1,7 @@
 Flask==3.0.3
 gunicorn==22.0.0
 shap
+openpyxl
 blinker==1.9.0
 Cython==3.0.11
 graphviz==0.20.3
