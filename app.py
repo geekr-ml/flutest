@@ -15,7 +15,7 @@ with open(model_path, "rb") as f:
 app = Flask(__name__)
 
 # Load the training data to use for SHAP explainer
-X_train = pd.read_excel("X_train.xlsx")
+X_train = pd.read_excel("./X_train.xlsx")
 feature_names = X_train.columns.tolist()  # Dynamically fetch feature names
 
 # Directory to save SHAP plots
